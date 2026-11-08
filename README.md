@@ -9,7 +9,9 @@
 
 >Sigma can be considered as standardized format for analysts to create and share detection rules. It helps in converting the IOCs into queries and can be easily integrated with security tools, including SIEM and EDRs. Sigma rules can be used to detect suspicious activities in various log sources. This also helps in building efficient processes for Detection as Code by automating the creation and deployment of detection rules.
 
-*definition from [HTB Academy](https://academy.hackthebox.com/) - Module Yara & Sigma for Analyst SOC*
+
+
+*definition from [HTB Academy](https://academy.hackthebox.com/) - Module Yara & Sigma for Analyst SOC* | Learn more about [Sigma](https://docs.blusapphire.io/older-releases/use-cases/sigma-rules)
 
 ## What's the purpose of this repo?
 
