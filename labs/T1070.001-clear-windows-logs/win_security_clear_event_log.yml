@@ -1,0 +1,15 @@
+title: Clear Windows Event Logs
+id: 1e8aa949-8266-422d-8004-c90a568ce8c0
+name: detect_clear_windows_event_logs
+status: experimental
+description: Detects the occurrence of a Windows event log clearing operation
+author: Sebastien Xia
+reference:
+  - https://attack.mitre.org/techniques/T1685/005/
+date: 2026-11-09
+modified: 2026-11-09
+logsource:
+  - product: windows
+  - service: security
+detection:
+#condition:
