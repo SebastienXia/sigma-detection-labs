@@ -37,12 +37,6 @@ Tested on [EVTX-ATTACK-SAMPLES](https://github.com/sbousseaden/EVTX-ATTACK-SAMPL
     sigma check .
     chainsaw hunt <samples_dir> -s . --mapping mappings/sigma-event-logs-all.yml
 
-## Results
-
-| Rule | Sample | Expected | Result | Notes |
-|---|---|---|---|---|
-| … | … | Detect | … | … |
-
 ## Known limitations
 
 - **.evtx deletion**: deleting active logs requires stopping the EventLog
