@@ -93,5 +93,3 @@ sourcetype="evtx:json" Event.System.EventID=104 "Event.System.Provider.#attribut
 **Step 4: run the query in Splunk**
 
 Paste the query in *Search & Reporting* with the time range set to **All time** (add `index=<your_index>` at the beginning if the file was not indexed in `main`). The cleared log (`System`) and the user who cleared it (`user01`) are returned.
-
-![splunk win system eventlog cleared](rss/splunk_win_system_eventlog_cleared.png)
