@@ -1,0 +1,18 @@
+name: evtx_json
+priority: 100
+transformations:
+  - id: field_mapping
+    type: field_name_mapping
+    mapping:
+      EventID: Event.System.EventID
+      Channel: Event.System.Channel
+      Computer: Event.System.Computer
+      Provider_Name: "Event.System.Provider.#attributes.Name"
+      UserData_LogFile: Event.UserData.LogFileCleared.Channel
+      SubjectUserName: Event.UserData.LogFileCleared.SubjectUserName
+      SubjectDomainName: Event.UserData.LogFileCleared.SubjectDomainName
+      SubjectLogonId: Event.UserData.LogFileCleared.SubjectLogonId
+  - id: add_sourcetype
+    type: add_condition
+    conditions:
+      sourcetype: evtx:json
