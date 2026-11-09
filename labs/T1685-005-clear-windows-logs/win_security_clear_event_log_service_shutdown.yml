@@ -1,0 +1,25 @@
+title: Windows Event Log Service Shutdown (Event ID 1100)
+id: 389effef-60a8-4f60-b026-2344c85802b5
+name: detect_event_log_service_shutdown
+status: experimental
+description: Detects the shutdown of the Windows Event Log service by monitoring for Event ID 1100. Ransomware operators and advanced attackers often stop this service to manually delete .evtx files without generating standard log clearing events (104 or 1102).
+author: Sebastien Xia
+references:
+  - https://attack.mitre.org/techniques/T1685/005/
+  - https://lantern.splunk.com/Security_Use_Cases/Security_Monitoring/Detecting_a_ransomware_attack/Windows_event_log_cleared
+date: 2026-11-09
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 1100
+  condition: selection
+falsepositives:
+  - System reboots or legitimate graceful shutdowns of the Windows OS.
+  - Rare legitimate troubleshooting of the EventLog service by IT admins.
+level: low
+tags:
+  - attack.t1685.005
+  - attack.t1685.001
+  - attack.defense-impairment
