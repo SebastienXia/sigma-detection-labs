@@ -8,11 +8,9 @@ references:
   - https://attack.mitre.org/techniques/T1685/005/
   - https://lantern.splunk.com/Security_Use_Cases/Security_Monitoring/Detecting_a_ransomware_attack/Windows_event_log_cleared
 date: 2026-11-09
-modified: 2026-11-09
 logsource:
   product: windows
-  # The stopping of the logging service is recorded in the System log.
-  service: system
+  service: security
 detection:
   selection:
     EventID: 1100
@@ -20,7 +18,8 @@ detection:
 falsepositives:
   - System reboots or legitimate graceful shutdowns of the Windows OS.
   - Rare legitimate troubleshooting of the EventLog service by IT admins.
-level: high
+level: low
 tags:
   - attack.t1685.005
-  - attack.defense_impairment
+  - attack.t1685.001
+  - attack.defense-impairment

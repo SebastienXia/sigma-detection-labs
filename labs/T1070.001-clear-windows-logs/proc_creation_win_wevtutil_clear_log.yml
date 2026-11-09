@@ -7,36 +7,34 @@ author: Sebastien Xia
 references:
   - https://attack.mitre.org/techniques/T1685/005/
 date: 2026-11-09
-modified: 2026-11-09
 logsource:
   category: process_creation
   product: windows
 detection:
-  # Block 1: The Wevtutil tool AND its "cl" argument
-  selection_wevtutil_tool:
-    CommandLine|contains|all:
-      - 'wevtutil'
-      - ' cl '
-  # Block 2: The logs targeted by Wevtutil (logical OR)
-  selection_wevtutil_logs:
+  # Block 1: the wevtutil binary (also catches a renamed copy via OriginalFileName)
+  selection_wevtutil_img:
+    - Image|endswith: '\wevtutil.exe'
+    - OriginalFileName: 'wevtutil.exe'
+  # Block 2: the clear command, short and long form
+  # No filter on the log name: clearing Sysmon or PowerShell logs is just as suspicious
+  selection_wevtutil_cli:
     CommandLine|contains:
-      - 'security'
-      - 'system'
-      - 'application'
+      - ' cl '
+      - ' clear-log '
   # Block 3: PowerShell deletion commands
   selection_powershell:
     CommandLine|contains:
       - 'Clear-EventLog'
       - 'Remove-EventLog'
-
-  # The final condition: (Wevtutil AND a log) OR PowerShell
-  condition: (selection_wevtutil_tool and selection_wevtutil_logs) or selection_powershell
+  # (wevtutil binary AND clear command) OR PowerShell
+  condition: all of selection_wevtutil_* or selection_powershell
 fields:
+  - Image
   - CommandLine
 falsepositives:
   - Legitimate administrative scripts used for system maintenance (should be excluded by user or path in production).
   - Software uninstallation or troubleshooting processes initiated by IT staff.
 level: high
 tags:
+  - attack.defense-impairment
   - attack.t1685.005
-  - attack.defense_impairment
