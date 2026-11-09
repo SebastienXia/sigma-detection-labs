@@ -1,0 +1,27 @@
+title: Clear Windows Security Event Log (Event ID 1102)
+id: e0fbf6b3-40d9-4e7b-b703-23de9e5a2b62
+name: detect_clear_windows_security_event_log
+status: experimental
+description: Detects the clearing of the Windows Security event log by monitoring for Event ID 1102. Unlike other Windows logs that generate Event ID 104 in the System log when cleared, the Security log is isolated and generates its own specific audit event.
+author: Sebastien Xia
+references:
+  - https://attack.mitre.org/techniques/T1685/005/
+  - https://lantern.splunk.com/Security_Use_Cases/Security_Monitoring/Detecting_a_ransomware_attack/Windows_event_log_cleared
+date: 2026-11-09
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 1102
+  condition: selection
+fields:
+  - SubjectUserName
+  - SubjectDomainName
+  - SubjectLogonId
+falsepositives:
+  - Legitimate administrative cleanup (very rare in modern enterprise environments, should always be investigated).
+level: high
+tags:
+  - attack.t1685.005
+  - attack.defense-impairment

@@ -1,0 +1,29 @@
+title: Direct Event Log File (EVTX) Deletion
+id: 86d4a915-c89f-4d20-ba6a-0e5a0c4b8bf6
+name: detect_evtx_file_deletion
+status: experimental
+description: Detects the direct deletion of Windows Event Log files (.evtx) from the disk. Adversaries may stop the EventLog service and manually delete these files from C:\Windows\System32\winevt\logs\ to bypass standard Event ID 1102/104 alerts. Note that deleting active logs requires stopping the EventLog service, which may prevent this event from being recorded locally; this rule is most effective with real-time log forwarding or for archived logs.
+author: Sebastien Xia
+references:
+  - https://attack.mitre.org/techniques/T1685/005/
+date: 2026-11-09
+logsource:
+  # The 'file_delete' category automatically covers Sysmon EventCode 23
+  category: file_delete
+  product: windows
+detection:
+  selection:
+    # We specifically target the system folder where Windows stores its logs.
+    TargetFilename|contains: '\System32\winevt\logs\'
+    # We verify that it is indeed a log file.
+    TargetFilename|endswith: '.evtx'
+  condition: selection
+fields:
+  - TargetFilename
+  - Image # The executable (or process) that deleted the file
+falsepositives:
+  - Rare legitimate administrative cleanup of corrupted log files (should be investigated).
+level: high
+tags:
+  - attack.t1685.005
+  - attack.defense-impairment
