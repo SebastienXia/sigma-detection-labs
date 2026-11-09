@@ -17,7 +17,7 @@ The rules themselves are not covered by this license.
 1. `win_system_eventlog_cleared.yml` Chainsaw Test
 .evtx file : `labs/T1685-005-clear-windows-logs/samples/DE_104_system_log_cleared.evtx` [here](labs/T1685-005-clear-windows-logs/samples/DE_104_system_log_cleared.evtx)
 
-![chainsaw win systemm eventlog cleared](rss/chainsaw_win_system_eventlog_cleared.png)
+![chainsaw win system eventlog cleared](rss/chainsaw_win_system_eventlog_cleared.png)
 
 3. `win_security_eventlog_cleared.yml` Chainsaw Test
 For the `win_security_eventlog_cleared.yml` file test, we need to modify certain parts of the file (see the comments in the modified file below):
@@ -51,3 +51,4 @@ tags:
   - attack.t1685.005
   - attack.defense_impairment
 ```
+![chainsaw win security eventlog cleared](rss/chainsaw_win_system_eventlog_cleared.png)
