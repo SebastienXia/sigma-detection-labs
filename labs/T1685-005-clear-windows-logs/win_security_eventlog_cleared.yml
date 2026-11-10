@@ -14,6 +14,7 @@ logsource:
 detection:
   selection:
     EventID: 1102
+    Channel: Security
   condition: selection
 fields:
   - SubjectUserName
