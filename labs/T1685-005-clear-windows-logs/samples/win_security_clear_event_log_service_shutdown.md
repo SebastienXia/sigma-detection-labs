@@ -31,7 +31,7 @@ sigma plugin install splunk
 
 ### Step 1: convert the XML event to JSON Lines
 
-Sample: [`labs/T1685-005-clear-windows-logs/samples/security_1100.xml`](labs/T1685-005-clear-windows-logs/samples/security_1100.xml)
+Sample: [`labs/T1685-005-clear-windows-logs/samples/rss/security_1100.xml`](labs/T1685-005-clear-windows-logs/samples/rss/security_1100.xml)
 
 source: [Data Source: Windows Event Log Security 1100](https://research.splunk.com/sources/2a25dafa-691e-4cb2-ae59-07a48867ed9a/)
 
