@@ -15,6 +15,8 @@ detection:
   selection:
     EventID: 1100
   condition: selection
+fields:
+  - Computer
 falsepositives:
   - System reboots or legitimate graceful shutdowns of the Windows OS.
   - Rare legitimate troubleshooting of the EventLog service by IT admins.
